@@ -1,0 +1,27 @@
+name: Manual Run from Tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Git tag to deploy (e.g. v1.2.0)'
+        required: true
+        type: string
+
+jobs:
+  run-from-tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print selected tag
+        run: echo "You selected tag: ${{ github.event.inputs.tag }}"
+
+      - name: Checkout code at tag
+        uses: actions/checkout@v3
+        with:
+          ref: refs/tags/${{ github.event.inputs.tag }}
+
+      - name: Simulate deployment
+        run: |
+          echo "Running workflow from tag ${{ github.event.inputs.tag }}"
+          # Replace this with real deployment logic

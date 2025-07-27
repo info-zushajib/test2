@@ -18,14 +18,14 @@ jobs:
 
       - name: Checkout code at tag
         uses: actions/checkout@v3
-        with:
-          ref: refs/tags/${{ github.event.inputs.tag }}
+#        with:
+#          ref: refs/tags/${{ github.event.inputs.tag }}
 
       - name: Simulate deployment
         run: |
           echo "Running workflow from tag ${{ github.event.inputs.tag }}"
           # Replace this with real deployment logic
-          
+
       - name: Print README.md
         run: |
           echo "==== README.md from tag ${{ github.event.inputs.tag }} ===="

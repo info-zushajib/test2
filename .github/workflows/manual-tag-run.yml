@@ -25,3 +25,8 @@ jobs:
         run: |
           echo "Running workflow from tag ${{ github.event.inputs.tag }}"
           # Replace this with real deployment logic
+          
+      - name: Print README.md
+        run: |
+          echo "==== README.md from tag ${{ github.event.inputs.tag }} ===="
+          cat README.md || echo "README.md not found in tag ${{ github.event.inputs.tag }}"

@@ -1,0 +1,26 @@
+name: Manual 2
+
+on:
+  workflow_dispatch:  # Enables manual trigger in GitHub UI
+    inputs:
+      environment:
+        description: 'Select environment to deploy'
+        required: true
+        type: choice
+        options:
+          - dev
+          - staging
+          - production
+
+jobs:
+  run-manually:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show selected environment
+        run: echo "You selected ${{ github.event.inputs.environment }} environment"
+
+      - name: Do something useful
+        run: |
+          echo "Running manual task in ${{ github.event.inputs.environment }}..."
+          # Add real actions here, like deployment scripts or builds

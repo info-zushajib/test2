@@ -8,8 +8,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print selected tag
-        run: echo "You selected tag ${{ github.event.inputs.tag }}"
+      - name: Print selected tag/branch
+        run: echo "You selected tag ${{ github.ref }}"
+
+      - name: Stop if branch
+        run: |
+          if [[ "${GITHUB_REF}" == refs/heads/* ]]; then
+            echo "This run is from a branch. Stopping workflow."
+            exit 0
+          fi
 
       - name: Checkout code at tag
         uses: actions/checkout@v3

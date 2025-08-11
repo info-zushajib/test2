@@ -1,0 +1,27 @@
+name: Manual Run from Tag
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-from-tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print selected tag
+        run: echo "You selected tag ${{ github.event.inputs.tag }}"
+
+      - name: Checkout code at tag
+        uses: actions/checkout@v3
+#        with:
+#          ref: refs/tags/${{ github.event.inputs.tag }}
+
+      - name: Simulate deployment
+        run: |
+          echo "Running workflow from tag ${{ github.ref }}"
+          # Replace this with real deployment logic
+
+      - name: Print README.md
+        run: |
+          echo "==== README.md from tag ${{ github.ref }} ===="
+          cat README.md || echo "README.md not found in tag ${{ github.ref }}"

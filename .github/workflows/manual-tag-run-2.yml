@@ -15,7 +15,7 @@ jobs:
         run: |
           if [[ "${GITHUB_REF}" == refs/heads/* ]]; then
             echo "This run is from a branch. Stopping workflow."
-            exit 0
+            exit 1
           fi
 
       - name: Checkout code at tag
